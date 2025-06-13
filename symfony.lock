@@ -270,6 +270,15 @@
             "./templates/base.html.twig"
         ]
     },
+    "symfony/uid": {
+        "version": "7.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "7.0",
+            "ref": "0df5844274d871b37fc3816c57a768ffc60a43a5"
+        }
+    },
     "symfony/ux-autocomplete": {
         "version": "2.26",
         "recipe": {
@@ -403,5 +412,14 @@
     },
     "twig/extra-bundle": {
         "version": "v3.21.0"
+    },
+    "vich/uploader-bundle": {
+        "version": "2.7",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.13",
+            "ref": "1b3064c2f6b255c2bc2f56461aaeb76b11e07e36"
+        }
     }
 }
