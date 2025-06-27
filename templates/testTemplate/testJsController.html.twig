@@ -1,0 +1,363 @@
+{# 1. Template Modal - templates/components/modal.html.twig #}
+<div data-controller="modal"
+     data-modal-size-value="{{ size|default('md') }}"
+     data-modal-backdrop-value="{{ backdrop|default(true) }}"
+     data-modal-keyboard-value="{{ keyboard|default(true) }}"
+     {% if url is defined %}data-modal-url-value="{{ url }}"{% endif %}>
+
+    <div data-modal-target="modal" class="modal hidden">
+        <div data-modal-target="backdrop"
+             class="modal-backdrop"
+             data-action="click->modal#close">
+            <div class="modal-dialog modal-{{ size|default('md') }}">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">{{ title|default('') }}</h5>
+                        <button type="button"
+                                class="modal-close"
+                                data-action="click->modal#close">×</button>
+                    </div>
+                    <div data-modal-target="content" class="modal-body">
+                        {{ content|default('') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{# Bouton pour ouvrir la modal #}
+<button data-action="click->modal#open" class="btn btn-primary">
+    {{ button_text|default('Ouvrir Modal') }}
+</button>
+
+{# 2. Template Toast Container - templates/components/toast.html.twig #}
+<div data-controller="toast"
+     data-toast-duration-value="{{ duration|default(5000) }}"
+     data-toast-position-value="{{ position|default('top-right') }}">
+
+    <div data-toast-target="container" class="toast-container toast-{{ position|default('top-right') }}">
+        {# Les toasts seront ajoutés dynamiquement ici #}
+    </div>
+</div>
+
+{# Exemple d'usage pour déclencher un toast #}
+<button data-action="click->toast#show"
+        data-toast-message-param="Message de test"
+        data-toast-type-param="success"
+        class="btn btn-success">
+    Afficher Toast
+</button>
+
+{# 3. Template DataTable - templates/components/datatable.html.twig #}
+<div data-controller="datatable"
+     data-datatable-url-value="{{ url }}"
+     data-datatable-limit-value="{{ limit|default(10) }}"
+     data-datatable-search-delay-value="{{ search_delay|default(500) }}">
+
+    {# Barre de recherche #}
+    <div class="datatable-controls">
+        <input type="search"
+               data-datatable-target="search"
+               data-action="input->datatable#search"
+               placeholder="Rechercher..."
+               class="form-control">
+    </div>
+
+    {# Indicateur de chargement #}
+    <div data-datatable-target="loading" class="loading-spinner hidden">
+        Chargement...
+    </div>
+
+    {# Table #}
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                {% for header in headers %}
+                    <th data-action="click->datatable#sort"
+                        data-column="{{ header.key }}"
+                        class="sortable">
+                        {{ header.label }}
+                        <span class="sort-indicator"></span>
+                    </th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody data-datatable-target="table">
+            {# Le contenu sera chargé dynamiquement #}
+            </tbody>
+        </table>
+    </div>
+
+    {# Pagination #}
+    <div data-datatable-target="pagination" class="pagination-container">
+        {# La pagination sera générée dynamiquement #}
+    </div>
+</div>
+
+{# 4. Template Formulaire - templates/components/form.html.twig #}
+{{ form_start(form, {
+    'attr': {
+        'data-controller': 'form',
+        'data-form-async-value': async|default(false),
+        'data-form-reset-on-success-value': reset_on_success|default(false),
+        'data-form-validate-on-blur-value': validate_on_blur|default(true),
+        'data-action': 'submit->form#submit'
+    }
+}) }}
+
+    {# Message d'erreur global #}
+<div data-form-target="error" class="alert alert-danger hidden"></div>
+
+{% for field in form %}
+    <div class="form-group">
+        {{ form_label(field) }}
+        {{ form_widget(field, {'attr': {'class': 'form-control'}}) }}
+        <div class="field-error hidden text-danger"></div>
+    </div>
+{% endfor %}
+
+<div class="form-actions">
+    <button type="submit"
+            data-form-target="submit"
+            data-original-text="{{ submit_text|default('Envoyer') }}"
+            class="btn btn-primary">
+        {{ submit_text|default('Envoyer') }}
+    </button>
+</div>
+
+{{ form_end(form) }}
+
+{# 5. Template Dropdown - templates/components/dropdown.html.twig #}
+<div data-controller="dropdown"
+     data-dropdown-searchable-value="{{ searchable|default(false) }}"
+     data-dropdown-multiple-value="{{ multiple|default(false) }}"
+     data-dropdown-placeholder-value="{{ placeholder|default('Sélectionner...') }}">
+
+    {# Bouton toggle #}
+    <button type="button"
+            data-dropdown-target="toggle"
+            data-action="click->dropdown#toggle"
+            class="dropdown-toggle">
+        {{ placeholder|default('Sélectionner...') }}
+        <span class="dropdown-arrow">▼</span>
+    </button>
+
+    {# Menu dropdown #}
+    <div data-dropdown-target="menu" class="dropdown-menu hidden">
+
+        {# Barre de recherche (si activée) #}
+        {% if searchable|default(false) %}
+            <div class="dropdown-search">
+                <input type="search"
+                       data-dropdown-target="search"
+                       data-action="input->dropdown#search"
+                       placeholder="Rechercher..."
+                       class="form-control">
+            </div>
+        {% endif %}
+
+        {# Options #}
+        <div data-dropdown-target="options" class="dropdown-options">
+            {% for option in options %}
+                <div data-action="click->dropdown#select"
+                     data-value="{{ option.value }}"
+                     class="dropdown-option">
+                    {{ option.label }}
+                </div>
+            {% endfor %}
+        </div>
+
+        {# Actions (pour dropdown multiple) #}
+        {% if multiple|default(false) %}
+            <div class="dropdown-actions">
+                <button type="button"
+                        data-action="click->dropdown#clear"
+                        class="btn btn-sm btn-outline">
+                    Tout désélectionner
+                </button>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{# 6. Template Layout Principal avec tous les contrôleurs #}
+{# templates/base.html.twig (partie head et body) #}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Mon App{% endblock %}</title>
+
+    {# CSS personnalisé pour les contrôleurs #}
+    <style>
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1050;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-backdrop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-dialog {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .modal-show .modal-dialog {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .modal-sm { max-width: 400px; }
+        .modal-md { max-width: 600px; }
+        .modal-lg { max-width: 900px; }
+        .modal-xl { max-width: 1200px; }
+
+        /* Toast Styles */
+        .toast-container {
+            position: fixed;
+            z-index: 1060;
+            pointer-events: none;
+        }
+
+        .toast-container.toast-top-right {
+            top: 20px;
+            right: 20px;
+        }
+
+        .toast-container.toast-top-left {
+            top: 20px;
+            left: 20px;
+        }
+
+        .toast {
+            pointer-events: auto;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            margin-bottom: 10px;
+            transform: translateX(100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .toast.toast-show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .toast.toast-exit {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+
+        .toast-success { border-left: 4px solid #28a745; }
+        .toast-error { border-left: 4px solid #dc3545; }
+        .toast-warning { border-left: 4px solid #ffc107; }
+        .toast-info { border-left: 4px solid #17a2b8; }
+
+        /* DataTable Styles */
+        .sortable {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .sortable:hover {
+            background-color: #f8f9fa;
+        }
+
+        .sort-asc::after {
+            content: " ↑";
+        }
+
+        .sort-desc::after {
+            content: " ↓";
+        }
+
+        /* Dropdown Styles */
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .dropdown-option {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        .dropdown-option:hover {
+            background-color: #f8f9fa;
+        }
+
+        .dropdown-option.selected {
+            background-color: #007bff;
+            color: white;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .field-error {
+            font-size: 0.875em;
+            margin-top: 0.25rem;
+        }
+
+        .form-control.error {
+            border-color: #dc3545;
+        }
+
+        /* Utility Classes */
+        .hidden { display: none !important; }
+        .loading-spinner { text-align: center; padding: 20px; }
+    </style>
+
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+{

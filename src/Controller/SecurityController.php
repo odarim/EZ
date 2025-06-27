@@ -12,9 +12,12 @@ class SecurityController extends AbstractController
     #[Route(path: '/login', name: 'app.login', defaults: ['title' => 'Login'])]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
+        if ($this->getUser()) {
+            if ($this->isGranted('ROLE_ADMIN')) {
+                return $this->redirectToRoute('app.admin');
+            }
+            return $this->redirectToRoute('app.client');
+        }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -28,7 +31,7 @@ class SecurityController extends AbstractController
     public function registration(): Response
     {
         if ($this->getUser()) {
-            if ($this->isGranted('ROLE_ADMIN') || $this->isGranted('ROLE_NOTARY')) {
+            if ($this->isGranted('ROLE_ADMIN')) {
                 return $this->redirectToRoute('app.admin');
             }
             return $this->redirectToRoute('app.client');

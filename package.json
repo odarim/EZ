@@ -29,5 +29,5 @@
         "@symfony/ux-turbo": "^2.26.1",
         "bootstrap": "^5.3.6",
         "tom-select": "^2.4.3"
-    }
+        }
 }
