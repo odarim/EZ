@@ -1,0 +1,208 @@
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    border: none;
+}
+
+.app-brand {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.app-brand-logo {
+    width: 40px;
+    height: 40px;
+    background: #7c3aed;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.app-brand-text {
+    font-size: 24px;
+    font-weight: 700;
+    color: #6b7280;
+    display: block;
+}
+
+.welcome-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1f2937;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.welcome-subtitle {
+    color: #6b7280;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+.form-label {
+    color: #374151;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.form-control {
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.form-control:focus {
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.password-toggle {
+    position: relative;
+}
+
+.password-toggle .toggle-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.forgot-password {
+    color: #7c3aed;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.forgot-password:hover {
+    color: #5b21b6;
+}
+
+.btn-primary {
+    background: #7c3aed;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-primary:hover {
+    background: #5b21b6;
+    transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+    background: #9ca3af;
+    transform: none;
+}
+
+.form-check-input:checked {
+    background-color: #7c3aed;
+    border-color: #7c3aed;
+}
+
+.divider {
+    position: relative;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #e5e7eb;
+}
+
+.divider-text {
+    background: white;
+    color: #6b7280;
+    padding: 0 15px;
+    font-size: 14px;
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-social {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e5e7eb;
+    background: white;
+    color: #6b7280;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.btn-social:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.btn-social.facebook:hover {
+    color: #1877f2;
+    border-color: #1877f2;
+}
+
+.btn-social.google:hover {
+    color: #ea4335;
+    border-color: #ea4335;
+}
+
+.btn-social.twitter:hover {
+    color: #1da1f2;
+    border-color: #1da1f2;
+}
+
+.create-account {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.create-account a {
+    color: #7c3aed;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.create-account a:hover {
+    color: #5b21b6;
+}

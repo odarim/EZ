@@ -1,0 +1,152 @@
+<div {{ attributes.defaults(stimulus_controller('form')) }}>
+    <div class="login-container">
+        <div class="card login-card"
+             data-controller="login"
+             data-login-login-url-value="{{ path('app.login') }}">
+
+            <div class="app-brand">
+                <div class="app-brand-logo">
+                    <svg width="24" height="24" viewBox="0 0 32 22" fill="white" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M0.00172773 0V6.85398C0.00172773 6.85398 -0.133178 9.01207 1.98092 10.8388L13.6912 21.9964L19.7809 21.9181L18.8042 9.88248L16.4951 7.17289L9.23799 0H0.00172773Z"
+                            fill="currentColor"/>
+                        <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M7.77295 16.3566L23.6563 0H32V6.88383C32 6.88383 31.8262 9.17836 30.6591 10.4057L19.7824 22H13.6938L7.77295 16.3566Z"
+                            fill="currentColor"/>
+                    </svg>
+                </div>
+                <span class="app-brand-text">Vuexy</span>
+            </div>
+
+            {#            <h1 class="welcome-title">{{ 'Welcome to Vuexy! 👋'|trans }}</h1> #}
+            <p class="welcome-subtitle">{{ 'Please sign-in to your account and start the adventure'|trans }}</p>
+
+            <!--begin::Form-->
+            {{ form_start(form, {'attr': {'data-login-target': 'form', 'data-action': 'submit->login#submitForm'}}) }}
+
+            <!--begin::Error Messages-->
+            <div class="fv-row mb-8">
+                {% if error %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error|trans }}
+                    </div>
+                {% endif %}
+
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ label }}">
+                            {{ message|trans([], 'security') }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+            <!--end::Error Messages-->
+
+            <!--begin::Username Field-->
+            <div class="mb-3">
+                {{ form_label(form.username, 'Email or Username'|trans, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.username, {
+                    'attr': {
+                        'class': 'form-control',
+                        'data-login-target': 'emailInput',
+                        'placeholder': 'Enter your email or username'|trans,
+                        'autofocus': true,
+                        'value': last_username is defined ? last_username : ''
+                    }
+                }) }}
+                {{ form_errors(form.username) }}
+            </div>
+            <!--end::Username Field-->
+
+            <!--begin::Password Field-->
+            <div class="mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    {{ form_label(form.password, 'Password'|trans, {'label_attr': {'class': 'form-label'}}) }}
+                    <a href="#" class="forgot-password">
+                        {{ 'Forgot Password?'|trans }}
+                    </a>
+                </div>
+                <div class="password-toggle">
+                    {{ form_widget(form.password, {
+                        'attr': {
+                            'class': 'form-control',
+                            'data-login-target': 'passwordInput',
+                            'placeholder': '••••••••••••'
+                        }
+                    }) }}
+                    <i class="fa fa-eye-slash toggle-icon"
+                       data-login-target="toggleIcon"
+                       data-action="click->login#togglePassword"></i>
+                </div>
+                {{ form_errors(form.password) }}
+            </div>
+            <!--end::Password Field-->
+
+            <!--begin::Remember Me-->
+            <div class="mb-3">
+                <div class="form-check">
+                    {{ form_widget(form.remember_me, {'attr': {'class': 'form-check-input'}}) }}
+                    {{ form_label(form.remember_me, 'Remember Me'|trans, {'label_attr': {'class': 'form-check-label'}}) }}
+                </div>
+                {{ form_errors(form.remember_me) }}
+            </div>
+            <!--end::Remember Me-->
+
+            <!--begin::Submit Button-->
+            <div class="mb-3">
+                <div class="d-grid mb-10">
+                    <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
+                        <!--begin::Indicator label-->
+                        <span class="indicator-label">{{ 'Login'|trans }}</span>
+                        <!--end::Indicator label-->
+                        <!--begin::Indicator progress-->
+                        <span class="indicator-progress" style="display: none;">
+                    {{ 'Please wait...'|trans }}
+                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+        </span>
+                        <!--end::Indicator progress-->
+                    </button>
+                </div>
+            </div>
+            <!--end::Submit Button-->
+
+            {{ form_end(form) }}
+            <!--end::Form-->
+
+            <!--begin::Sign Up Link-->
+            <div class="create-account">
+                <span>{{ 'New on our platform? '|trans }}</span>
+                <a href="#">{{ 'Create an account'|trans }}</a>
+            </div>
+            <!--end::Sign Up Link-->
+
+            <div class="divider">
+                <div class="divider-text">{{ 'or'|trans }}</div>
+            </div>
+
+            <!--begin::Social Buttons-->
+            <div class="social-buttons">
+                <a href="#"
+                   class="btn-social facebook"
+                   data-action="click->login#loginWithFacebook">
+                    <i class="fa fa-facebook-f text-primary"></i>
+                </a>
+                <a href="#"
+                   class="btn-social google"
+                   data-action="click->login#loginWithGoogle">
+                    <i class="fa fa-google text-danger"></i>
+                </a>
+                <a href="#"
+                   class="btn-social twitter"
+                   data-action="click->login#loginWithTelegram">
+                    <i class="fa fa-telegram text-primary"></i>
+                </a>
+            </div>
+            <!--end::Social Buttons-->
+        </div>
+    </div>
+</div>

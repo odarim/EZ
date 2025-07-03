@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('login') }}
+{% endblock %}
+
+<twig:block name="body">
+    <twig:app-login :last_username="last_username" :error="error"/>
+</twig:block>
