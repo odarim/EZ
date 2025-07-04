@@ -1,0 +1,15 @@
+{% extends 'client/layout/base.html.twig' %}
+
+{% block title %}{{ 'Dashboard'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="dashboard-container">
+        <h1 class="dashboard-title">{{ 'Welcome to the Client Dashboard'|trans }}</h1>
+        <p class="dashboard-description">{{ 'Here you can manage your application settings, users, and more.'|trans }}</p>
+
+        {% block dashboard_content %}
+            <div class="dashboard-cards">
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

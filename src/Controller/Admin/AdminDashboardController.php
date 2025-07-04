@@ -11,6 +11,6 @@ class AdminDashboardController extends DashboardController
 
     function getDashboardTemplate(): string
     {
-        return 'admin/dashboard/index.html.twig';
+        return 'admin/pages/dashboard/index.html.twig';
     }
 }

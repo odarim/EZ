@@ -12,6 +12,6 @@ class ClientDashboardController extends DashboardController
 
     function getDashboardTemplate(): string
     {
-        return 'client/dashboard/index.html.twig';
+        return 'client/pages/dashboard/index.html.twig';
     }
 }

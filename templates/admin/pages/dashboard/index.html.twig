@@ -1,0 +1,27 @@
+{% extends 'admin/layout/base.html.twig' %}
+
+{% block title %}{{ 'Dashboard'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="dashboard-container">
+        <h1 class="dashboard-title">{{ 'Welcome to the Admin Dashboard'|trans }}</h1>
+        <p class="dashboard-description">{{ 'Here you can manage your application settings, users, and more.'|trans }}</p>
+
+        {% block dashboard_content %}
+            <div class="dashboard-cards">
+                <div class="card">
+                    <h2>{{ 'Total Users'|trans }}</h2>
+                    <p>{{ total_users }}</p>
+                </div>
+                <div class="card">
+                    <h2>{{ 'Active Sessions'|trans }}</h2>
+                    <p>{{ active_sessions }}</p>
+                </div>
+                <div class="card">
+                    <h2>{{ 'Pending Tasks'|trans }}</h2>
+                    <p>{{ pending_tasks }}</p>
+                </div>
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

@@ -4,14 +4,21 @@ security:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
-        users_in_memory: { memory: null }
+        customer_provider:
+            id: App\Security\Provider\CustomerProvider
+        admin_provider:
+            id: App\Security\Provider\AdminProvider
+        chain_provider:
+            chain:
+                providers: [ customer_provider, admin_provider ]
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             lazy: true
-            provider: users_in_memory
+            provider: chain_provider
             custom_authenticator: App\Security\AppCustomAuthenticator
             logout:
                 path: app_logout
