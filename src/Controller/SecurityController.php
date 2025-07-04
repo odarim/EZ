@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
@@ -28,6 +29,10 @@ class SecurityController extends AbstractController
         // Handle CSRF token errors
         if ($error instanceof InvalidCsrfTokenException) {
             $error = 'Invalid CSRF token. Please try again.';
+        }elseif ($error instanceof BadCredentialsException){
+            $error = 'Invalid username or password. Please try again.';
+        } else {
+            $error = $error?->getMessage();
         }
 
         return $this->render('common/security/login.html.twig', [

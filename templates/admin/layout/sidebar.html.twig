@@ -1,0 +1,124 @@
+{# sidebar.html.twig - Sidebar Component Block #}
+{% block sidebar %}
+    <aside class="sidebar"
+           data-controller="sidebar"
+        {{ stimulus_controller('sidebar') }}>
+
+        {# Sidebar Header #}
+        <header class="sidebar-header">
+            <a href="{{ path('app_dashboard') }}" class="header-logo">
+                <img src="{{ asset('images/logo.png') }}" alt="{{ app_name|default('App') }}">
+                {% if app_name is defined %}
+                    <span class="logo-text">{{ app_name }}</span>
+                {% endif %}
+            </a>
+
+            <button class="toggler sidebar-toggler"
+                    data-action="click->sidebar#toggleCollapse"
+                    type="button"
+                    aria-label="Toggle sidebar">
+                <span class="material-symbols-rounded">chevron_left</span>
+            </button>
+
+            <button class="toggler menu-toggler"
+                    data-action="click->sidebar#toggleMenu"
+                    type="button"
+                    aria-label="Toggle menu">
+                <span class="material-symbols-rounded">menu</span>
+            </button>
+        </header>
+
+        {# Sidebar Navigation #}
+        <nav class="sidebar-nav" role="navigation" aria-label="Main navigation">
+            {# Primary Navigation #}
+            <ul class="nav-list primary-nav">
+                {% set primary_nav = [
+                    {
+                        route: 'app_dashboard',
+                        icon: 'dashboard',
+                        label: 'Dashboard',
+                        roles: ['ROLE_USER']
+                    },
+                    {
+                        route: 'app_calendar',
+                        icon: 'calendar_today',
+                        label: 'Calendar',
+                        roles: ['ROLE_USER']
+                    },
+                    {
+                        route: 'app_notifications',
+                        icon: 'notifications',
+                        label: 'Notifications',
+                        roles: ['ROLE_USER']
+                    },
+                    {
+                        route: 'app_team',
+                        icon: 'group',
+                        label: 'Team',
+                        roles: ['ROLE_ADMIN', 'ROLE_MANAGER']
+                    },
+                    {
+                        route: 'app_analytics',
+                        icon: 'insert_chart',
+                        label: 'Analytics',
+                        roles: ['ROLE_ADMIN', 'ROLE_MANAGER']
+                    },
+                    {
+                        route: 'app_bookmarks',
+                        icon: 'star',
+                        label: 'Bookmarks',
+                        roles: ['ROLE_USER']
+                    },
+                    {
+                        route: 'app_settings',
+                        icon: 'settings',
+                        label: 'Settings',
+                        roles: ['ROLE_USER']
+                    }
+                ] %}
+
+                {% for item in primary_nav %}
+                    {% if item.roles is not defined or is_granted(item.roles) %}
+                        <li class="nav-item">
+                            <a href="{{ path(item.route) }}"
+                               class="nav-link {{ app.request.attributes.get('_route') == item.route ? 'active' : '' }}"
+                               data-action="click->sidebar#navigate"
+                               data-route="{{ item.route }}"
+                               aria-label="{{ item.label }}">
+                                <span class="nav-icon material-symbols-rounded">{{ item.icon }}</span>
+                                <span class="nav-label">{{ item.label|trans }}</span>
+                            </a>
+                            <span class="nav-tooltip">{{ item.label|trans }}</span>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+
+            {# Secondary Navigation #}
+            <ul class="nav-list secondary-nav">
+                <li class="nav-item">
+                    <a href="{{ path('app_profile') }}"
+                       class="nav-link {{ app.request.attributes.get('_route') == 'app_profile' ? 'active' : '' }}"
+                       data-action="click->sidebar#navigate"
+                       data-route="app_profile"
+                       aria-label="Profile">
+                        <span class="nav-icon material-symbols-rounded">account_circle</span>
+                        <span class="nav-label">{{ 'Profile'|trans }}</span>
+                    </a>
+                    <span class="nav-tooltip">{{ 'Profile'|trans }}</span>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ path('app_logout') }}"
+                       class="nav-link"
+                       data-action="click->sidebar#logout"
+                       aria-label="Logout">
+                        <span class="nav-icon material-symbols-rounded">logout</span>
+                        <span class="nav-label">{{ 'Logout'|trans }}</span>
+                    </a>
+                    <span class="nav-tooltip">{{ 'Logout'|trans }}</span>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+{% endblock %}
