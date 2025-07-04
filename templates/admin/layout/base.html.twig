@@ -47,11 +47,9 @@
 
 <!-- App Container -->
 <div class="app-container" data-controller="app">
-    {% block sidebar %}
-        {% if is_granted('ROLE_USER') %}
-            {{ include('components/sidebar.html.twig') }}
-        {% endif %}
-    {% endblock %}
+    {% if is_granted('ROLE_USER') %}
+        {{ include('client/layout/sidebar.html.twig') }}
+    {% endif %}
 
     <!-- Main Content Area -->
     <div class="main-content" id="main-content">
@@ -81,16 +79,16 @@
                                 </button>
 
                                 <div class="dropdown-menu" data-dropdown-target="menu">
-                                    <a href="{{ path('app_profile') }}" class="dropdown-item">
+                                    <a href="#" class="dropdown-item">
                                         <span class="material-symbols-rounded">account_circle</span>
                                         {{ 'Profile'|trans }}
                                     </a>
-                                    <a href="{{ path('app_settings') }}" class="dropdown-item">
+                                    <a href="#" class="dropdown-item">
                                         <span class="material-symbols-rounded">settings</span>
                                         {{ 'Settings'|trans }}
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a href="{{ path('app_logout') }}" class="dropdown-item">
+                                    <a href="{{ path('app.logout') }}" class="dropdown-item">
                                         <span class="material-symbols-rounded">logout</span>
                                         {{ 'Logout'|trans }}
                                     </a>
