@@ -1,0 +1,69 @@
+/* Typography Base Styles */
+
+/* Font Families */
+$font-sans: 'Inter', sans-serif;
+$font-serif: 'Georgia', serif;
+$font-mono: 'Courier New', monospace;
+
+body {
+    font-family: $font-sans;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #1a202c;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-sans;
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0 0 1rem;
+}
+
+h1 { font-size: 2.25rem; }
+h2 { font-size: 1.875rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+h5 { font-size: 1rem; }
+h6 { font-size: 0.875rem; }
+
+/* Paragraphs */
+p {
+    margin: 0 0 1rem;
+}
+
+/* Links */
+a {
+    color: #4299e1;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: #2b6cb0;
+    }
+}
+
+/* Lists */
+ul, ol {
+    margin: 0 0 1rem;
+    padding-left: 1.5rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+/* Blockquotes */
+blockquote {
+    margin: 0 0 1rem;
+    padding-left: 1rem;
+    border-left: 4px solid #cbd5e0;
+    color: #718096;
+    font-style: italic;
+}
+
+/* Utility Classes */
+.text-center { text-align: center !important; }
+.text-left { text-align: left !important; }
+.text-right { text-align: right !important; }
+.text-justify { text-align: justify !important; }

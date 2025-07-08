@@ -1,2 +1,20 @@
 @import 'components/sidebar.scss';
-@import "components/main.scss";
+@import "layout/main.scss";
+/* Import Base Styles */
+@import 'base/reset.scss';
+@import 'base/typography.scss';
+
+/* Import Utilities */
+@import 'utilities/utilities.scss';
+
+/* Import Components */
+@import 'components/header.scss';
+@import 'components/footer.scss';
+@import 'components/alert.scss';
+@import 'components/modal.scss';
+@import 'components/notification.scss';
+@import 'components/loading.scss';
+
+/* Import Layout */
+@import 'layout/grid.scss';
+@import 'layout/container.scss';

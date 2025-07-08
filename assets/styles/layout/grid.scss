@@ -1,0 +1,114 @@
+/* Grid System */
+
+/* Grid Container */
+.grid-container {
+    display: grid;
+    gap: 16px;
+    width: 100%;
+}
+
+/* Grid Rows */
+.grid-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -8px;
+    margin-right: -8px;
+}
+
+.grid-row > .grid-col {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+/* Grid Columns */
+.grid-col {
+    flex: 1 1 0;
+    max-width: 100%;
+}
+
+.grid-col-auto {
+    flex: 0 0 auto;
+    width: auto;
+}
+
+.grid-col-1 { flex: 0 0 8.333%; max-width: 8.333%; }
+.grid-col-2 { flex: 0 0 16.667%; max-width: 16.667%; }
+.grid-col-3 { flex: 0 0 25%; max-width: 25%; }
+.grid-col-4 { flex: 0 0 33.333%; max-width: 33.333%; }
+.grid-col-5 { flex: 0 0 41.667%; max-width: 41.667%; }
+.grid-col-6 { flex: 0 0 50%; max-width: 50%; }
+.grid-col-7 { flex: 0 0 58.333%; max-width: 58.333%; }
+.grid-col-8 { flex: 0 0 66.667%; max-width: 66.667%; }
+.grid-col-9 { flex: 0 0 75%; max-width: 75%; }
+.grid-col-10 { flex: 0 0 83.333%; max-width: 83.333%; }
+.grid-col-11 { flex: 0 0 91.667%; max-width: 91.667%; }
+.grid-col-12 { flex: 0 0 100%; max-width: 100%; }
+
+/* Responsive Grid */
+@media (min-width: 576px) {
+    .grid-col-sm-1 { flex: 0 0 8.333%; max-width: 8.333%; }
+    .grid-col-sm-2 { flex: 0 0 16.667%; max-width: 16.667%; }
+    .grid-col-sm-3 { flex: 0 0 25%; max-width: 25%; }
+    .grid-col-sm-4 { flex: 0 0 33.333%; max-width: 33.333%; }
+    .grid-col-sm-5 { flex: 0 0 41.667%; max-width: 41.667%; }
+    .grid-col-sm-6 { flex: 0 0 50%; max-width: 50%; }
+    .grid-col-sm-7 { flex: 0 0 58.333%; max-width: 58.333%; }
+    .grid-col-sm-8 { flex: 0 0 66.667%; max-width: 66.667%; }
+    .grid-col-sm-9 { flex: 0 0 75%; max-width: 75%; }
+    .grid-col-sm-10 { flex: 0 0 83.333%; max-width: 83.333%; }
+    .grid-col-sm-11 { flex: 0 0 91.667%; max-width: 91.667%; }
+    .grid-col-sm-12 { flex: 0 0 100%; max-width: 100%; }
+}
+
+@media (min-width: 768px) {
+    .grid-col-md-1 { flex: 0 0 8.333%; max-width: 8.333%; }
+    .grid-col-md-2 { flex: 0 0 16.667%; max-width: 16.667%; }
+    .grid-col-md-3 { flex: 0 0 25%; max-width: 25%; }
+    .grid-col-md-4 { flex: 0 0 33.333%; max-width: 33.333%; }
+    .grid-col-md-5 { flex: 0 0 41.667%; max-width: 41.667%; }
+    .grid-col-md-6 { flex: 0 0 50%; max-width: 50%; }
+    .grid-col-md-7 { flex: 0 0 58.333%; max-width: 58.333%; }
+    .grid-col-md-8 { flex: 0 0 66.667%; max-width: 66.667%; }
+    .grid-col-md-9 { flex: 0 0 75%; max-width: 75%; }
+    .grid-col-md-10 { flex: 0 0 83.333%; max-width: 83.333%; }
+    .grid-col-md-11 { flex: 0 0 91.667%; max-width: 91.667%; }
+    .grid-col-md-12 { flex: 0 0 100%; max-width: 100%; }
+}
+
+@media (min-width: 992px) {
+    .grid-col-lg-1 { flex: 0 0 8.333%; max-width: 8.333%; }
+    .grid-col-lg-2 { flex: 0 0 16.667%; max-width: 16.667%; }
+    .grid-col-lg-3 { flex: 0 0 25%; max-width: 25%; }
+    .grid-col-lg-4 { flex: 0 0 33.333%; max-width: 33.333%; }
+    .grid-col-lg-5 { flex: 0 0 41.667%; max-width: 41.667%; }
+    .grid-col-lg-6 { flex: 0 0 50%; max-width: 50%; }
+    .grid-col-lg-7 { flex: 0 0 58.333%; max-width: 58.333%; }
+    .grid-col-lg-8 { flex: 0 0 66.667%; max-width: 66.667%; }
+    .grid-col-lg-9 { flex: 0 0 75%; max-width: 75%; }
+    .grid-col-lg-10 { flex: 0 0 83.333%; max-width: 83.333%; }
+    .grid-col-lg-11 { flex: 0 0 91.667%; max-width: 91.667%; }
+    .grid-col-lg-12 { flex: 0 0 100%; max-width: 100%; }
+}
+
+@media (min-width: 1200px) {
+    .grid-col-xl-1 { flex: 0 0 8.333%; max-width: 8.333%; }
+    .grid-col-xl-2 { flex: 0 0 16.667%; max-width: 16.667%; }
+    .grid-col-xl-3 { flex: 0 0 25%; max-width: 25%; }
+    .grid-col-xl-4 { flex: 0 0 33.333%; max-width: 33.333%; }
+    .grid-col-xl-5 { flex: 0 0 41.667%; max-width: 41.667%; }
+    .grid-col-xl-6 { flex: 0 0 50%; max-width: 50%; }
+    .grid-col-xl-7 { flex: 0 0 58.333%; max-width: 58.333%; }
+    .grid-col-xl-8 { flex: 0 0 66.667%; max-width: 66.667%; }
+    .grid-col-xl-9 { flex: 0 0 75%; max-width: 75%; }
+    .grid-col-xl-10 { flex: 0 0 83.333%; max-width: 83.333%; }
+    .grid-col-xl-11 { flex: 0 0 91.667%; max-width: 91.667%; }
+    .grid-col-xl-12 { flex: 0 0 100%; max-width: 100%; }
+}
+
+/* Utility Classes */
+.grid-gap-0 { gap: 0; }
+.grid-gap-1 { gap: 4px; }
+.grid-gap-2 { gap: 8px; }
+.grid-gap-3 { gap: 16px; }
+.grid-gap-4 { gap: 24px; }
+.grid-gap-5 { gap: 32px; }
