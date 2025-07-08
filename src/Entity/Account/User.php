@@ -38,7 +38,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     protected ?string $username = null;
 
     #[ORM\Column(length: 180, nullable: true)]
-    #[Groups(['estate:read', 'estate:write'])]
     protected ?string $email = null;
 
     #[ORM\Column]
@@ -54,11 +53,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     protected ?string $confirmPlainPassword = null;
 
     #[ORM\Column(length: 50, nullable: true)]
-    #[Groups(['estate:read', 'estate:write'])]
     protected ?string $firstName = null;
 
     #[ORM\Column(length: 100, nullable: true)]
-    #[Groups(['estate:read', 'estate:write'])]
     protected ?string $lastName = null;
 
     #[ORM\Column(type: 'string', length: 64, nullable: true)]
@@ -67,10 +64,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'datetime', nullable: true)]
     private ?\DateTime $resetPasswordTokenExpiry = null;
 
-    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Post::class)]
+    #[ORM\OneToMany(targetEntity: Post::class, mappedBy: 'author')]
     private Collection $posts;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Task::class)]
+    #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'user')]
     private Collection $tasks;
 
     public function __construct()
