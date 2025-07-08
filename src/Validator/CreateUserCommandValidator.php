@@ -14,8 +14,8 @@ class CreateUserCommandValidator
             throw new \InvalidArgumentException('The username can not be empty.');
         }
 
-        if (u($username)->trim()->length() < 8) {
-            throw new \InvalidArgumentException('The username must be at least 8 characters long.');
+        if (u($username)->trim()->length() < 4) {
+            throw new \InvalidArgumentException('The username must be at least 4 characters long.');
         }
 
         return $username;
@@ -40,8 +40,8 @@ class CreateUserCommandValidator
             throw new \InvalidArgumentException('The password can not be empty.');
         }
 
-        if (u($plainPassword)->trim()->length() < 8) {
-            throw new \InvalidArgumentException('The password must be at least 8 characters long.');
+        if (u($plainPassword)->trim()->length() < 6) {
+            throw new \InvalidArgumentException('The password must be at least 6 characters long.');
         }
 
         if (1 !== preg_match(User::PASSWORD_PATTERN, $plainPassword)) {
