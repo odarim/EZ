@@ -3,14 +3,229 @@
 {% block title %}{{ 'Dashboard'|trans }}{% endblock %}
 
 {% block body %}
-    <div class="dashboard-container">
-        <h1 class="dashboard-title">{{ 'Welcome to the Admin Dashboard'|trans }}</h1>
-        <p class="dashboard-description">{{ 'Here you can manage your application settings, users, and more.'|trans }}</p>
-
-        {% block dashboard_content %}
-            <div class="dashboard-cards">
-
+    <!-- Main Content -->
+    <main class="card mt-5">
+        <!-- Page Header -->
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Dashboard Overview</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group me-2">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Filter</button>
+                </div>
             </div>
-        {% endblock %}
-    </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="row mb-4">
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <div class="text-xs fw-bold text-primary text-uppercase mb-1">Total Users</div>
+                                <div class="h5 mb-0 fw-bold text-gray-800">40,689</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-users fa-2x text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <div class="text-xs fw-bold text-success text-uppercase mb-1">Revenue</div>
+                                <div class="h5 mb-0 fw-bold text-gray-800">$215,000</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-dollar-sign fa-2x text-success"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <div class="text-xs fw-bold text-info text-uppercase mb-1">Orders</div>
+                                <div class="h5 mb-0 fw-bold text-gray-800">18,456</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-shopping-cart fa-2x text-info"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <div class="text-xs fw-bold text-warning text-uppercase mb-1">Pending</div>
+                                <div class="h5 mb-0 fw-bold text-gray-800">18</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-clock fa-2x text-warning"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="row mb-4">
+            <div class="col-lg-8">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h6 class="m-0 fw-bold">Monthly Sales</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-placeholder bg-light rounded d-flex align-items-center justify-content-center text-muted">
+                            <div class="text-center">
+                                <i class="fas fa-chart-line fa-3x mb-3"></i>
+                                <div>Chart visualization would go here</div>
+                                <small>Monthly sales data from Jan-Dec 2024</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-success text-white">
+                        <h6 class="m-0 fw-bold">Top Categories</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <div class="small mb-1">Electronics</div>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-primary" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="small mb-1">Clothing</div>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-success" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="small mb-1">Home & Garden</div>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-info" style="width: 45%"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="small mb-1">Books</div>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-warning" style="width: 30%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity & Tasks -->
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-info text-white">
+                        <h6 class="m-0 fw-bold">Recent Activity</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item px-0">
+                                <div class="d-flex align-items-center">
+                                    <div class="badge bg-success rounded-pill me-2">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="fw-semibold">New user registered</div>
+                                        <small class="text-muted">John Doe joined the platform</small>
+                                    </div>
+                                    <small class="text-muted">2 min ago</small>
+                                </div>
+                            </div>
+                            <div class="list-group-item px-0">
+                                <div class="d-flex align-items-center">
+                                    <div class="badge bg-primary rounded-pill me-2">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="fw-semibold">Order completed</div>
+                                        <small class="text-muted">Order #12345 shipped</small>
+                                    </div>
+                                    <small class="text-muted">15 min ago</small>
+                                </div>
+                            </div>
+                            <div class="list-group-item px-0">
+                                <div class="d-flex align-items-center">
+                                    <div class="badge bg-warning rounded-pill me-2">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="fw-semibold">System alert</div>
+                                        <small class="text-muted">Server maintenance scheduled</small>
+                                    </div>
+                                    <small class="text-muted">1 hour ago</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card shadow-sm">
+                    <div class="card-header text-white">
+                        <h6 class="m-0 fw-bold">Tasks</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" checked>
+                            <label class="form-check-label">
+                                <span class="text-decoration-line-through">Update user documentation</span>
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox">
+                            <label class="form-check-label">
+                                Review pending orders
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox">
+                            <label class="form-check-label">
+                                Analyze monthly reports
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox">
+                            <label class="form-check-label">
+                                Update inventory system
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox">
+                            <label class="form-check-label">
+                                Schedule team meeting
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 {% endblock %}

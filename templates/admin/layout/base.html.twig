@@ -32,67 +32,90 @@
     {% block head %}{% endblock %}
 </head>
 <body class="{% block body_class %}{% endblock %}" data-theme="{% block theme %}light{% endblock %}">
-{#<!-- Loading Overlay -->#}
-{#<div class="loading-overlay" id="loadingOverlay">#}
-{#    <div class="loading-spinner">#}
-{#        <div class="spinner"></div>#}
-{#        <p>Loading...</p>#}
-{#    </div>#}
-{#</div>#}
+{# <!-- Loading Overlay --> #}
+{# <div class="loading-overlay" id="loadingOverlay"> #}
+{#    <div class="loading-spinner"> #}
+{#        <div class="spinner"></div> #}
+{#        <p>Loading...</p> #}
+{#    </div> #}
+{# </div> #}
 
-{#<!-- Skip to content link for accessibility -->#}
-{#<a href="#main-content" class="skip-to-content visually-hidden-focusable">#}
-{#    Skip to main content#}
-{#</a>#}
+{# <!-- Skip to content link for accessibility --> #}
+{# <a href="#main-content" class="skip-to-content visually-hidden-focusable"> #}
+{#    Skip to main content #}
+{# </a> #}
 
 <!-- App Container -->
 <div class="app-container" data-controller="app">
     {% if is_granted('ROLE_USER') %}
-        {{ include('client/layout/sidebar.html.twig') }}
+        {{ include('admin/layout/sidebar.html.twig') }}
     {% endif %}
 
     <!-- Main Content Area -->
     <div class="main-content" id="main-content">
         {% block header %}
             {% if is_granted('ROLE_USER') %}
-                <header class="main-header">
-                    <div class="header-content">
-                        <div class="header-left">
-                            <h1 class="page-title">{% block page_title %}{{ block('title') }}{% endblock %}</h1>
-                            {% block breadcrumb %}{% endblock %}
-                        </div>
-                        <div class="header-right">
-                            {% block header_actions %}{% endblock %}
+                <header class="main-header border-0">
+                    <div class="header-left">
+                        <h1 class="page-title">Dashboard Overview</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item">
+                                    <a href="#" class="breadcrumb-link">Home</a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                            </ol>
+                        </nav>
+                    </div>
+
+                    <div class="header-right">
+                        <div class="header-actions">
+                            <!-- Notifications -->
+                            <div class="notification-wrapper">
+                                <div class="notification-icon">
+                    <span class="material-symbols-rounded">
+                        notifications
+                    </span>
+                                    <span class="notification-badge">3</span>
+                                </div>
+                            </div>
 
                             <!-- User Menu -->
-                            <div class="user-menu" data-controller="dropdown">
-                                <button class="user-menu-trigger"
-                                        data-action="click->dropdown#toggle"
-                                        type="button"
-                                        aria-expanded="false"
-                                        aria-haspopup="true">
-                                    <img src="{{ app.user.avatar|default(asset('images/default-avatar.png')) }}"
-                                         alt="User Avatar"
-                                         class="user-avatar">
-                                    <span class="user-name">{{ app.user.displayName|default('User') }}</span>
-                                    <span class="material-symbols-rounded">expand_more</span>
-                                </button>
+                            <div class="dropdown">
+                                <a class="user-menu-trigger d-flex align-items-center gap-2 dropdown-toggle"
+                                   href="#"
+                                   role="button"
+                                   data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    <div class="user-avatar">
+                                        {{ app.user.username|slice(0, 1)|upper }}
+                                    </div>
+                                    <span class="user-name d-none d-md-inline">John Doe</span>
+                                </a>
 
-                                <div class="dropdown-menu" data-dropdown-target="menu">
-                                    <a href="#" class="dropdown-item">
-                                        <span class="material-symbols-rounded">account_circle</span>
-                                        {{ 'Profile'|trans }}
-                                    </a>
-                                    <a href="#" class="dropdown-item">
-                                        <span class="material-symbols-rounded">settings</span>
-                                        {{ 'Settings'|trans }}
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a href="{{ path('app.logout') }}" class="dropdown-item">
-                                        <span class="material-symbols-rounded">logout</span>
-                                        {{ 'Logout'|trans }}
-                                    </a>
-                                </div>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <span class="material-symbols-rounded me-2">account_circle</span>
+                                            Profile
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <span class="material-symbols-rounded me-2">settings</span>
+                                            Settings
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <span class="material-symbols-rounded me-2">logout</span>
+                                            Logout
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -152,7 +175,7 @@
 <!-- Scripts -->
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
-    {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {#    {% block importmap %}{{ importmap('app') }}{% endblock %} #}
 {% endblock %}
 
 <!-- Additional Scripts -->
